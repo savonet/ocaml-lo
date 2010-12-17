@@ -170,7 +170,7 @@ static int generic_handler(const char *path, const char *types, lo_arg **argv, i
         case 'i':
           v = caml_alloc_tuple(2);
           Store_field(v, 0, caml_hash_variant("Int32"));
-          Store_field(v, 1, Int_val(argv[i]->i));
+          Store_field(v, 1, Val_int(argv[i]->i));
           break;
 
         case 'f':
