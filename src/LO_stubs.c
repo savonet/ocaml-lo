@@ -13,6 +13,12 @@
 #include <stdio.h>
 #include <assert.h>
 
+static void check(int n)
+{
+  if (n)
+    caml_raise_constant(*caml_named_value("lo_exn_error"));
+}
+
 #define Address_val(v) *((lo_address*)Data_custom_val(v))
 
 static void address_finalize(value a)
@@ -81,31 +87,31 @@ CAMLprim value caml_lo_message_add(value message, value data)
       value d = Field(data, 1);
 
       if (v == caml_hash_variant("Int32"))
-        assert(!lo_message_add_int32(m, Int_val(d)));
+        check(lo_message_add_int32(m, Int_val(d)));
       else if (v == caml_hash_variant("Float"))
-        assert(!lo_message_add_float(m, Double_val(d)));
+        check(lo_message_add_float(m, Double_val(d)));
       else if (v == caml_hash_variant("Double"))
-        assert(!lo_message_add_double(m, Double_val(d)));
+        check(lo_message_add_double(m, Double_val(d)));
       else if (v == caml_hash_variant("Char"))
-        assert(!lo_message_add_char(m, Int_val(d)));
+        check(lo_message_add_char(m, Int_val(d)));
       else if (v == caml_hash_variant("String"))
-        assert(!lo_message_add_string(m, String_val(d)));
+        check(lo_message_add_string(m, String_val(d)));
       else
         /* TODO */
-        assert(0);
+        caml_raise_constant(*caml_named_value("lo_exn_unhandled"));
     }
   else
     {
       if (data == caml_hash_variant("True"))
-        assert(!lo_message_add_true(m));
+        check(lo_message_add_true(m));
       else if (data == caml_hash_variant("False"))
-        assert(!lo_message_add_false(m));
+        check(lo_message_add_false(m));
       else if (data == caml_hash_variant("Nil"))
-        assert(!lo_message_add_nil(m));
+        check(lo_message_add_nil(m));
       else if (data == caml_hash_variant("Infinitum"))
-        assert(!lo_message_add_infinitum(m));
+        check(lo_message_add_infinitum(m));
       else
-        assert(0);
+        caml_raise_constant(*caml_named_value("lo_exn_unhandled"));
     }
 
   CAMLreturn(Val_unit);
@@ -116,7 +122,7 @@ CAMLprim value ocaml_lo_send_message(value address, value path, value message)
   CAMLparam3(address, path, message);
 
   /* TODO: blocking section */
-  assert(!lo_send_message(Address_val(address), String_val(path), Message_val(message)));
+  check(lo_send_message(Address_val(address), String_val(path), Message_val(message)));
 
   CAMLreturn(Val_unit);
 }
@@ -215,7 +221,8 @@ static int generic_handler(const char *path, const char *types, lo_arg **argv, i
 
         default:
           printf("Handler not implemented: '%c'\n", types[i]);
-          assert(0);
+          caml_leave_blocking_section();
+          caml_raise_constant(*caml_named_value("lo_exn_unhandled"));
         }
 
       //printf("message on %s: %c\n", path, types[i]);

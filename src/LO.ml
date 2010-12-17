@@ -1,3 +1,10 @@
+exception Error
+exception Unhandled
+
+let () =
+  Callback.register_exception "lo_exn_error" Error;
+  Callback.register_exception "lo_exn_unhandled" Unhandled
+
 module Address = struct
   type t
 

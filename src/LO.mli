@@ -1,3 +1,6 @@
+exception Error
+exception Unhandled
+
 module Address : sig
   type t
 
