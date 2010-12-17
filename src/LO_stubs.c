@@ -82,6 +82,14 @@ CAMLprim value caml_lo_message_add(value message, value data)
 
       if (v == caml_hash_variant("Int32"))
         assert(!lo_message_add_int32(m, Int_val(d)));
+      else if (v == caml_hash_variant("Float"))
+        assert(!lo_message_add_float(m, Double_val(d)));
+      else if (v == caml_hash_variant("Double"))
+        assert(!lo_message_add_double(m, Double_val(d)));
+      else if (v == caml_hash_variant("Char"))
+        assert(!lo_message_add_char(m, Int_val(d)));
+      else if (v == caml_hash_variant("String"))
+        assert(!lo_message_add_string(m, String_val(d)));
       else
         /* TODO */
         assert(0);
@@ -169,6 +177,18 @@ static int generic_handler(const char *path, const char *types, lo_arg **argv, i
           v = caml_alloc_tuple(2);
           Store_field(v, 0, caml_hash_variant("Float"));
           Store_field(v, 1, caml_copy_double(argv[i]->f));
+          break;
+
+        case 'd':
+          v = caml_alloc_tuple(2);
+          Store_field(v, 0, caml_hash_variant("Double"));
+          Store_field(v, 1, caml_copy_double(argv[i]->d));
+          break;
+
+        case 'c':
+          v = caml_alloc_tuple(2);
+          Store_field(v, 0, caml_hash_variant("Char"));
+          Store_field(v, 1, Val_int(argv[i]->c));
           break;
 
         case 's':
