@@ -42,7 +42,7 @@ CAMLprim value caml_lo_address_new(value host, value port)
   lo_address a;
 
   a = lo_address_new(String_val(host), String_val(port));
-  ans = alloc_custom(&address_ops, sizeof(lo_address), 0, 1);
+  ans = caml_alloc_custom(&address_ops, sizeof(lo_address), 0, 1);
   Address_val(ans) = a;
 
   CAMLreturn(ans);
@@ -71,7 +71,7 @@ CAMLprim value caml_lo_message_new(value unit)
   lo_message m;
 
   m = lo_message_new();
-  ans = alloc_custom(&message_ops, sizeof(lo_message), 0, 1);
+  ans = caml_alloc_custom(&message_ops, sizeof(lo_message), 0, 1);
   Address_val(ans) = m;
 
   CAMLreturn(ans);
@@ -251,7 +251,7 @@ CAMLprim value caml_lo_server_new(value port, value handler)
   /* TODO: custom error message handling */
   s->server = lo_server_new(String_val(port), error_msg);
   assert(s->server);
-  ans = alloc_custom(&server_ops, sizeof(server_t*), 0, 1);
+  ans = caml_alloc_custom(&server_ops, sizeof(server_t*), 0, 1);
   Server_t_val(ans) = s;
   lo_server_add_method(s->server, NULL, NULL, generic_handler, s);
 

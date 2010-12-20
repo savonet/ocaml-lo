@@ -1,0 +1,6 @@
+name="lo"
+version="@VERSION@"
+description="OCaml bindings for lo"
+requires="@requires@"
+archive(byte)="lo.cma"
+archive(native)="lo.cmxa"
