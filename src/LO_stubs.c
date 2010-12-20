@@ -250,7 +250,8 @@ CAMLprim value caml_lo_server_new(value port, value handler)
 
   /* TODO: custom error message handling */
   s->server = lo_server_new(String_val(port), error_msg);
-  assert(s->server);
+  if (!s->server)
+    caml_raise_constant(*caml_named_value("lo_exn_error"));
   ans = caml_alloc_custom(&server_ops, sizeof(server_t*), 0, 1);
   Server_t_val(ans) = s;
   lo_server_add_method(s->server, NULL, NULL, generic_handler, s);
