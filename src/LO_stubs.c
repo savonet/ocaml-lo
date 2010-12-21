@@ -162,9 +162,12 @@ static int generic_handler(const char *path, const char *types, lo_arg **argv, i
 {
   server_t *s = (server_t*)user_data;
   int i;
-  value arg;
+  value arg = 0;
+  value v = 0;
+
+  caml_leave_blocking_section();
+
   caml_register_global_root(&arg);
-  value v;
   caml_register_global_root(&v);
 
   arg = caml_alloc_tuple(argc);
@@ -221,7 +224,6 @@ static int generic_handler(const char *path, const char *types, lo_arg **argv, i
 
         default:
           printf("Handler not implemented: '%c'\n", types[i]);
-          caml_leave_blocking_section();
           caml_raise_constant(*caml_named_value("lo_exn_unhandled"));
         }
 
@@ -229,12 +231,12 @@ static int generic_handler(const char *path, const char *types, lo_arg **argv, i
       Store_field(arg, i, v);
     }
 
-  caml_leave_blocking_section();
   caml_callback2(s->handler, caml_copy_string(path), arg);
-  caml_enter_blocking_section();
 
   caml_remove_global_root(&v);
   caml_remove_global_root(&arg);
+
+  caml_enter_blocking_section();
 
   return 0;
 }
