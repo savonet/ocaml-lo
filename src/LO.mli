@@ -34,7 +34,7 @@ val send : Address.t -> string -> Message.data list -> unit
 module Server : sig
   type t
 
-  val create : int -> (string -> Message.data list -> unit) -> t
+  val create : int -> (string -> Message.data array -> unit) -> t
 
   val recv : t -> unit
 end

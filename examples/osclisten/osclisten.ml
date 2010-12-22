@@ -9,6 +9,7 @@ let handler path data =
     | `False -> "False"
     | _ -> "???"
   in
+  let data = Array.to_list data in
   let s = List.map s data in
   let s = String.concat ", " s in
   Printf.printf "Message on %s: %s\n%!" path s
@@ -22,5 +23,6 @@ let () =
   in
   let s = S.create port handler in
   while true do
+    Gc.full_major ();
     S.recv s
   done

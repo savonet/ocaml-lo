@@ -54,10 +54,7 @@ module Server = struct
   type t
 
   external create : string -> (string -> Message.data array -> unit) -> t = "caml_lo_server_new"
-  let create p h =
-    create
-      (string_of_int p)
-      (fun p d -> h p (Array.to_list d))
+  let create p h = create (string_of_int p) h
 
   external recv : t -> unit = "caml_lo_server_recv"
 end
