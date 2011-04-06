@@ -16,6 +16,7 @@ AC_CHECK_OCAML_COMPILERS()
 
 AC_PROG_CC()
 AC_CHECK_TOOL([AR],[ar],no)
+AC_SUBST(AR)
 
 # check for liblo
 AC_CHECK_HEADERS([lo/lo.h], [AC_CHECK_FUNC([lo_address_new], [ac_have_lo="yes"])])
