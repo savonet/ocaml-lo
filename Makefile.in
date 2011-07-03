@@ -16,7 +16,7 @@ doc:
 	$(MAKE) -C src htdoc
 	mkdir -p doc
 	rm -rf doc/html
-	mv src/doc/pianobar/html doc
+	mv src/doc/lo/html doc
 	rm -rf src/doc
 
 dist:

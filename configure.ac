@@ -19,8 +19,11 @@ AC_CHECK_TOOL([AR],[ar],no)
 AC_SUBST(AR)
 
 # check for liblo
-AC_CHECK_HEADERS([lo/lo.h], [AC_CHECK_FUNC([lo_address_new], [ac_have_lo="yes"])])
 LIBS="$LIBS -llo"
+AC_CHECK_HEADERS([lo/lo.h], [AC_CHECK_FUNC([lo_address_new], [ac_have_lo="yes"])])
+if test "$ac_have_lo" != "yes"; then
+   AC_MSG_ERROR([LO headers not found.])
+fi
 
 # substitutions to perform
 AC_SUBST(VERSION)
