@@ -20,9 +20,10 @@ AC_SUBST(AR)
 
 # check for liblo
 LIBS="$LIBS -llo"
-AC_CHECK_HEADERS([lo/lo.h], [AC_CHECK_FUNC([lo_address_new], [ac_have_lo="yes"])])
+#lo_address_new_with_proto was introduced in 0.26
+AC_CHECK_HEADERS([lo/lo.h], [AC_CHECK_FUNC([lo_address_new_with_proto], [ac_have_lo="yes"])])
 if test "$ac_have_lo" != "yes"; then
-   AC_MSG_ERROR([LO headers not found.])
+   AC_MSG_ERROR([LO headers (version >= 0.26) not found.])
 fi
 
 # substitutions to perform
