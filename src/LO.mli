@@ -27,6 +27,8 @@ module Message : sig
     | `Nil
     | `Infinitum
     ]
+
+  val to_string : data -> string
 end
 
 val send : Address.t -> string -> Message.data list -> unit

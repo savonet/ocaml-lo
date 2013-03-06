@@ -19,7 +19,7 @@ module Message = struct
 
   type data =
     [
-      `Int32 of int
+    | `Int32 of int
     | `Float of float
     | `String of string
     | `Blob of string
@@ -43,6 +43,23 @@ module Message = struct
     List.iter (add m) d
 
   external send : Address.t -> string -> t -> unit = "ocaml_lo_send_message"
+
+  let to_string (x:data) =
+    match x with
+    | `Int32 n -> string_of_int n
+    | `Int64 n -> string_of_int n
+    | `Float f -> string_of_float f
+    | `Double f -> string_of_float f
+    | `Blob b -> b
+    | `Timetag (t1,t2) -> Printf.sprintf "(%d,%d)" t1 t2
+    | `String s -> s
+    | `Symbol s -> s
+    | `Char c -> String.make 1 c
+    | `Midi m -> "<MIDI>"
+    | `True -> "true"
+    | `False -> "false"
+    | `Nil -> "nil"
+    | `Infinitum -> "inf"
 end
 
 let send addr path data =
