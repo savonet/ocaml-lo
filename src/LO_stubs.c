@@ -48,6 +48,21 @@ CAMLprim value caml_lo_address_new(value host, value port)
   CAMLreturn(ans);
 }
 
+CAMLprim value caml_lo_address_default(value unit)
+{
+  CAMLparam0();
+  CAMLlocal1(ans);
+
+  lo_address a;
+
+  a = lo_address_new(NULL, NULL);
+  ans = caml_alloc_custom(&address_ops, sizeof(lo_address), 0, 1);
+  assert(ans);
+  Address_val(ans) = a;
+
+  CAMLreturn(ans);
+}
+
 #define Message_val(v) *((lo_message*)Data_custom_val(v))
 
 static void message_finalize(value a)

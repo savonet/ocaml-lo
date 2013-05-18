@@ -10,6 +10,9 @@ module Address : sig
 
   (** Create an address with given host and port. *)
   val create : string -> int -> t
+
+  (** Default address to send to, guessed by server. *)
+  val default : unit -> t
 end
 
 (** Messages. *)

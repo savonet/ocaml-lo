@@ -10,6 +10,8 @@ module Address = struct
 
   external create : string -> string -> t = "caml_lo_address_new"
   let create host port = create host (string_of_int port)
+
+  external default : unit -> t = "caml_lo_address_default"
 end
 
 module Message = struct
