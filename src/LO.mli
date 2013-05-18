@@ -1,6 +1,9 @@
 (** Bindings to liblo library to send and receive OSC messages. *)
 
+(** An error occured. *)
 exception Error
+
+(** Raised when an unhandled message kind is received. *)
 exception Unhandled
 
 (** Operations on addresses. *)
