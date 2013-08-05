@@ -135,9 +135,15 @@ CAMLprim value caml_lo_message_add(value message, value data)
 CAMLprim value ocaml_lo_send_message(value address, value path, value message)
 {
   CAMLparam3(address, path, message);
+  int ret;
 
   /* TODO: blocking section */
-  check(lo_send_message(Address_val(address), String_val(path), Message_val(message)));
+  /* The return value is the one of send, i.e. the length of the sent data or -1
+     on error. */
+  ret = lo_send_message(Address_val(address), String_val(path), Message_val(message));
+
+  if (ret == -1)
+    caml_raise_constant(*caml_named_value("lo_exn_error"));
 
   CAMLreturn(Val_unit);
 }
