@@ -57,7 +57,7 @@ module Message = struct
     | `String s -> s
     | `Symbol s -> s
     | `Char c -> String.make 1 c
-    | `Midi m -> "<MIDI>"
+    | `Midi _ -> "<MIDI>"
     | `True -> "true"
     | `False -> "false"
     | `Nil -> "nil"
