@@ -1,0 +1,9 @@
+language: c
+addons:
+  apt:
+    packages:
+    - ocaml-nox
+    - ocaml-findlib
+    - liblo-dev
+
+script: ./bootstrap && ./configure && make
