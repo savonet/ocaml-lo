@@ -7,4 +7,4 @@ addons:
     - ocaml-findlib
     - liblo-dev
 
-script: ./bootstrap && ./configure && make && make examples
+script: ./bootstrap && ./configure && make && make -C examples
