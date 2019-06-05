@@ -159,7 +159,8 @@ typedef struct {
 static void server_finalize(value srv)
 {
   server_t *s = Server_t_val(srv);
-  lo_server_free(s->server);
+  if (s->server)
+    lo_server_free(s->server);
   if (s->handler)
     caml_remove_global_root(&s->handler);
   free(s);
@@ -290,6 +291,20 @@ CAMLprim value caml_lo_server_recv(value server)
   caml_enter_blocking_section();
   lo_server_recv(s);
   caml_leave_blocking_section();
+
+  CAMLreturn(Val_unit);
+}
+
+CAMLprim value caml_lo_server_free(value server)
+{
+  CAMLparam1(server);
+  lo_server s = Server_val(server);
+
+  caml_enter_blocking_section();
+  lo_server_free(s);
+  caml_leave_blocking_section();
+
+  Server_val(server) = NULL;
 
   CAMLreturn(Val_unit);
 }

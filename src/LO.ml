@@ -76,4 +76,6 @@ module Server = struct
   let create p h = create (string_of_int p) h
 
   external recv : t -> unit = "caml_lo_server_recv"
+
+  external stop : t -> unit = "caml_lo_server_free"
 end

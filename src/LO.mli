@@ -59,4 +59,7 @@ module Server : sig
   (** Recive messages and pass them to the handler. This function is blocking
       until a message is received. *)
   val recv : t -> unit
+
+  (** Stop the server. *)
+  val stop : t -> unit
 end
