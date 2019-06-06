@@ -283,10 +283,18 @@ CAMLprim value caml_lo_server_new(value port, value handler)
   CAMLreturn(ans);
 }
 
+static void check_server(lo_server s)
+{
+  if (!s)
+    caml_raise_constant(*caml_named_value("lo_exn_stopped"));
+}
+
+
 CAMLprim value caml_lo_server_recv(value server)
 {
   CAMLparam1(server);
   lo_server s = Server_val(server);
+  check_server(s);
 
   caml_enter_blocking_section();
   lo_server_recv(s);

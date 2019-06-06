@@ -72,6 +72,11 @@ let send addr path data =
 module Server = struct
   type t
 
+  exception Stopped
+
+  let () =
+    Callback.register_exception "lo_exn_stopped" Stopped;
+
   external create : string -> (string -> Message.data array -> unit) -> t = "caml_lo_server_new"
   let create p h = create (string_of_int p) h
 

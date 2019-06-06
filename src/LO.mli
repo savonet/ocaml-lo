@@ -52,6 +52,9 @@ module Server : sig
   (** A server. *)
   type t
 
+  (** Raised when an operation is performed on a stopped server. *)
+  exception Stopped
+
   (** Create a server listening on given port with handler function taking as
       agument the path and messages received. *)
   val create : int -> (string -> Message.data array -> unit) -> t
@@ -60,6 +63,7 @@ module Server : sig
       until a message is received. *)
   val recv : t -> unit
 
-  (** Stop the server. *)
+  (** Stop the server. No operation on this server should be performed
+     afterward (otherwise, the exception [Stopped] is raised). *)
   val stop : t -> unit
 end
