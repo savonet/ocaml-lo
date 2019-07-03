@@ -22,11 +22,6 @@ install: [
 remove: ["ocamlfind" "remove" "lo"]
 depends: ["ocaml" "ocamlfind"]
 depexts: [
-  ["liblo-dev"] {os-distribution = "alpine"}
-  ["liblo"] {os-distribution = "arch"}
-  ["liblo-devel"] {os-distribution = "centos"}
-  ["liblo-devel"] {os-distribution = "fedora"}
-  ["liblo-devel"] {os-family = "suse"}
   ["liblo-dev"] {os-distribution = "ubuntu"}
   ["liblo-dev"] {os-distribution = "debian"}
   ["liblo"] {os = "macos" & os-distribution = "homebrew"}
