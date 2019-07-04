@@ -34,4 +34,3 @@ bug-reports: "https://github.com/savonet/ocaml-lo/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-lo.git"
 synopsis:
   "Bindings for the lo library which provides functions for communicating with input controls using the OSC protocol"
-flags: light-uninstall
