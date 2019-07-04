@@ -1,10 +1,11 @@
 opam-version: "2.0"
 name: "lo"
+version: "0.1.2"
 maintainer: "Romain Beauxis <toots@rastageeks.org>"
 authors: "The Savonet Team <savonet-users@lists.sourceforge.net>"
 homepage: "https://github.com/savonet/ocaml-lo"
 build: [
-  ["./bootstrap"] {dev}
+  ["./bootstrap"] {pinned}
   ["./configure" "--prefix" prefix] {os != "macos"}
   [
     "./configure"
@@ -14,12 +15,16 @@ build: [
     "--prefix"
     prefix
   ] {os = "macos"}
+  [make "clean"] {pinned}
   [make]
 ]
 install: [
   [make "install"]
 ]
-depends: ["ocaml" "ocamlfind" {build}]
+depends: [
+  "ocaml" 
+  "ocamlfind" {build}
+]
 depexts: [
   ["liblo-dev"] {os-distribution = "ubuntu"}
   ["liblo-dev"] {os-distribution = "debian"}
