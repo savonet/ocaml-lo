@@ -26,8 +26,7 @@ depends: [
   "ocamlfind" {build}
 ]
 depexts: [
-  ["liblo-dev"] {os-distribution = "ubuntu"}
-  ["liblo-dev"] {os-distribution = "debian"}
+  ["liblo-dev"] {os-family = "debian"}
   ["liblo"] {os = "macos" & os-distribution = "homebrew"}
   ["liblo"] {os-distribution = "arch"}
   ["liblo-devel"] {os-distribution = "centos"}
