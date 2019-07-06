@@ -34,7 +34,6 @@ depexts: [
   ["liblo-devel"] {os-family = "suse"}
   ["automake" "autoconf"] {os-distribution = "alpine"}
 ]
-]
 bug-reports: "https://github.com/savonet/ocaml-lo/issues"
 dev-repo: "git+https://github.com/savonet/ocaml-lo.git"
 synopsis:
