@@ -23,8 +23,7 @@ module Message : sig
   type timetag = int * int
 
   type data =
-    [
-    | `Int32 of int
+    [ `Int32 of int
     | `Float of float
     | `String of string
     | `Blob of string
@@ -37,8 +36,7 @@ module Message : sig
     | `True
     | `False
     | `Nil
-    | `Infinitum
-    ]
+    | `Infinitum ]
 
   (** String representation of a message (useful for debugging). *)
   val to_string : data -> string
