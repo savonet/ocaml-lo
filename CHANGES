@@ -1,3 +1,7 @@
+0.2.0 (unreleased)
+=====
+* Switch to dune.
+
 0.1.2 (2018-06-26)
 =====
 * Add `Server.stop` function.

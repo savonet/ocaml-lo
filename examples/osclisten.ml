@@ -1,4 +1,4 @@
-module S = LO.Server
+module S = Lo.Server
 
 let handler path data =
   let s = function
@@ -16,10 +16,7 @@ let handler path data =
 
 let () =
   let port =
-    if Array.length Sys.argv < 2 then
-      7777
-    else
-      int_of_string (Sys.argv.(1))
+    if Array.length Sys.argv < 2 then 7777 else int_of_string Sys.argv.(1)
   in
   let s = S.create port handler in
   while true do
