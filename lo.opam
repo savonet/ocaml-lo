@@ -9,6 +9,7 @@ license: "LGPL-2.1-or-later"
 homepage: "https://github.com/savonet/ocaml-lo"
 bug-reports: "https://github.com/savonet/ocaml-lo/issues"
 depends: [
+  "conf-liblo"
   "dune" {>= "2.0"}
   "dune-configurator"
 ]
