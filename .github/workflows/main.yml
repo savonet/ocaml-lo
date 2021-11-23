@@ -19,9 +19,8 @@ jobs:
       run: |
         opam install -y odoc
         opam exec dune build @doc
-        mkdir public
-        cp -r _build/default/_doc/_html/lo/* public/
     - name: Deploy pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: _build/default/_doc/_html/lo
