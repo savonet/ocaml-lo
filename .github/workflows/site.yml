@@ -1,0 +1,16 @@
+name: site
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build doc
+      run: |
+        dune build @doc
+        mkdir public
+        cp -r _build/default/_doc/_html/* public/
+    - name: Deploy pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
