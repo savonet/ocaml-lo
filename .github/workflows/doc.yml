@@ -14,7 +14,7 @@ jobs:
     - name: Setup OCaml
       uses: avsm/setup-ocaml@v2
     - name: Pin locally
-      run: opam pin -y add --n .
+      run: opam pin -y add -n .
     - name: Update packages and install locally
       run: opam install -y odoc lo
     - name: Build doc

@@ -12,6 +12,6 @@ jobs:
     - uses: avsm/setup-ocaml@v2
       with:
         ocaml-version: ${{ matrix.ocaml-version }}
-    - run: opam pin add -n .
+    - run: opam pin -y add -n .
     - run: opam depext -yt lo
     - run: opam install -t .
