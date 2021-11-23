@@ -17,6 +17,7 @@ jobs:
     - run: opam install -t .
     - name: Build doc
       run: |
+        opam install -y odoc
         opam exec dune build @doc
         mkdir public
         cp -r _build/default/_doc/_html/* public/
