@@ -41,6 +41,11 @@ $ dune install
 
 This should install the library file in the appropriate place.
 
+Documentation
+-------------
+
+See <http://www.liquidsoap.info/ocaml-lo/>.
+
 License
 -------
 
