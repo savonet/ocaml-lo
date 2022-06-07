@@ -1,3 +1,7 @@
+0.2.1 (unreleased)
+=====
+- Clarify license by switching to plain LGPL 2.1+, without any exception (#5).
+
 0.2.0 (2021-03-13)
 =====
 * Switch to dune.
