@@ -67,7 +67,7 @@ CAMLprim value caml_lo_message_new(value unit) {
 
   m = lo_message_new();
   ans = caml_alloc_custom(&message_ops, sizeof(lo_message), 0, 1);
-  Address_val(ans) = m;
+  Message_val(ans) = m;
 
   CAMLreturn(ans);
 }
