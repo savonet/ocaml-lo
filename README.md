@@ -1,31 +1,21 @@
-ocaml-lo
-========
+# ocaml-lo
 
-This package contains an OCaml interface for the
-[liblo](http://liblo.sourceforge.net/) library to use the [Open Sound
-Control](http://www.opensoundcontrol.org/)
-([OSC](http://www.opensoundcontrol.org/)) protocol.
+> [!WARNING]
+> This repository is read-only. All changes must be made in
+> [savonet/liquidsoap](https://github.com/savonet/liquidsoap) under
+> `src/modules/synced/lo/` and will be mirrored here automatically.
 
-Prerequisites
--------------
+OCaml bindings for [liblo](http://liblo.sourceforge.net/), a library for communicating using the [Open Sound Control](http://www.opensoundcontrol.org/) (OSC) protocol.
 
-- ocaml
-- liblo
-- findlib
-- dune >= 2.0
+Please read the COPYING file before using this software.
 
-Compilation
------------
+## Prerequisites
 
-```
-$ dune build
-```
+- OCaml >= 4.14
+- liblo (e.g. `apt install liblo-dev` or `brew install liblo`)
+- dune >= 3.0
 
-This should build both the native and the byte-code version of the extension
-library.
-
-Installation
-------------
+## Installation
 
 Via `opam`:
 
@@ -33,20 +23,13 @@ Via `opam`:
 $ opam install lo
 ```
 
-Via `dune` (for developers):
+## Building from source
 
 ```
+$ dune build
 $ dune install
 ```
 
-This should install the library file in the appropriate place.
+## Contact
 
-Documentation
--------------
-
-See <http://www.liquidsoap.info/ocaml-lo/>.
-
-License
--------
-
-The library is under the LGPL 2.1, see [COPYING](COPYING).
+savonet-users@lists.sourceforge.net

@@ -10,11 +10,12 @@ homepage: "https://github.com/savonet/ocaml-lo"
 bug-reports: "https://github.com/savonet/ocaml-lo/issues"
 depends: [
   "conf-liblo"
-  "dune" {>= "2.0"}
+  "conf-pkg-config"
+  "dune" {>= "3.23"}
   "dune-configurator"
+  "odoc" {with-doc}
 ]
 build: [
-  ["dune" "subst"] {pinned}
   [
     "dune"
     "build"
@@ -28,3 +29,4 @@ build: [
   ]
 ]
 dev-repo: "git+https://github.com/savonet/ocaml-lo.git"
+x-maintenance-intent: ["(latest)"]
