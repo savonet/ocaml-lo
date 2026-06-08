@@ -1,6 +1,6 @@
 (** Bindings to liblo library to send and receive OSC messages. *)
 
-(** An error occured. *)
+(** An error occurred. *)
 exception Error
 
 (** Raised when an unhandled message kind is received. *)
@@ -54,14 +54,14 @@ module Server : sig
   exception Stopped
 
   (** Create a server listening on given port with handler function taking as
-      agument the path and messages received. *)
+      argument the path and messages received. *)
   val create : int -> (string -> Message.data array -> unit) -> t
 
-  (** Recive messages and pass them to the handler. This function is blocking
+  (** Receive messages and pass them to the handler. This function is blocking
       until a message is received. *)
   val recv : t -> unit
 
-  (** Stop the server. No operation on this server should be performed
-     afterward (otherwise, the exception [Stopped] is raised). *)
+  (** Stop the server. No operation on this server should be performed afterward
+      (otherwise, the exception [Stopped] is raised). *)
   val stop : t -> unit
 end
